@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/jerometonnelier/ATAConfiguration",
         "state": {
           "branch": null,
-          "revision": "8ec9be62f1f5783ce0acb71ff1cb885ca8265df2",
-          "version": "1.0.3"
+          "revision": "0c1bb6372ec4b9fca70ea96d406cfe958fd786fc",
+          "version": "1.0.4"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/jerometonnelier/KExtensions",
         "state": {
           "branch": null,
-          "revision": "a3421746f963d4df8e66407996241158e73b3bf0",
-          "version": "1.0.26"
+          "revision": "08cb0df7c365de5ca2e7da425b3f2831c5834b8a",
+          "version": "1.0.29"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/kean/Nuke",
         "state": {
           "branch": null,
-          "revision": "fdde04a80497b54e2773c5e5d02dfbb9bdbe99a9",
-          "version": "9.2.3"
+          "revision": "961597d324949c7003c77d602bfc4d5519b47e81",
+          "version": "9.2.4"
         }
       },
       {
@@ -53,6 +53,15 @@
           "branch": null,
           "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
           "version": "5.0.1"
+        }
+      },
+      {
+        "package": "TextFieldEffects",
+        "repositoryURL": "https://github.com/jerometonnelier/TextFieldEffects",
+        "state": {
+          "branch": null,
+          "revision": "34c87d76b1675f2001bec6e16462f8cc0b8dbbd2",
+          "version": "1.7.2"
         }
       }
     ]
