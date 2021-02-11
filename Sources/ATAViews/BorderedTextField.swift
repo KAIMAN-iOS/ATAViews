@@ -8,12 +8,12 @@
 import UIKit
 import TextFieldExtension
 
-protocol FieldTypeConfigurable {
+public protocol FieldTypeConfigurable {
     var configuration: FieldTypeConfiguration { get }
     var isMandatory: Bool { get }
 }
 
-enum FieldTypeConfiguration {
+public enum FieldTypeConfiguration {
     case date, number, text, email, password, phone, picker, decimal
     
     var keyboardType: UIKeyboardType? {
@@ -45,12 +45,12 @@ enum FieldTypeConfiguration {
     }
 }
 
-class BorderedTextField: UIView {
-    static var boarderColor: UIColor = .gray
-    var boarderColor: UIColor?
+public class BorderedTextField: UIView {
+    public static var boarderColor: UIColor = .gray
+    public var boarderColor: UIColor?
     @IBOutlet weak var textfield: UITextField!
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear
         layer.borderWidth = 1.0
@@ -58,7 +58,7 @@ class BorderedTextField: UIView {
     }
         
     private(set) var field: FieldTypeConfigurable!
-    func configure(_ field: FieldTypeConfigurable) {
+    public func configure(_ field: FieldTypeConfigurable) {
         self.field = field
         textfield.keyboardType = field.configuration.keyboardType ?? .default
     }

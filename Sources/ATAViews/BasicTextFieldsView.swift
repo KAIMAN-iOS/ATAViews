@@ -8,7 +8,7 @@
 import UIKit
 import UIViewExtension
 
-class BasicTextFieldsView: UIView {
+public class BasicTextFieldsView: UIView {
     @IBOutlet weak var stackView: UIStackView!
     var textFields: [BorderedTextField] {
         stackView.arrangedSubviews.compactMap({ $0 as? BorderedTextField })

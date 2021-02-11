@@ -30,7 +30,7 @@ public class FieldTextField<FormType: FieldConfigurable>: AkiraTextField, FieldT
     public func validityString() -> String? { nil }
 }
 
-class ATAFormTextField<FormType: FieldConfigurable>: ATATextField {
+public class ATAFormTextField<FormType: FieldConfigurable>: ATATextField {
     private var _textfield: FieldTextField<FormType> = FieldTextField<FormType>()
     override var textField: AkiraTextField! {
         get {
@@ -48,12 +48,12 @@ class ATAFormTextField<FormType: FieldConfigurable>: ATATextField {
     }
 }
 
-class ATATextField: UIView {
-    static var placeholderColor: UIColor = .gray
-    static var textColor: UIColor = .black
-    var placeholderColor: UIColor?
-    var textColor: UIColor?
-    override func awakeFromNib() {
+public class ATATextField: UIView {
+    public static var placeholderColor: UIColor = .gray
+    public static var textColor: UIColor = .black
+    public var placeholderColor: UIColor?
+    public var textColor: UIColor?
+    public override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
     }
