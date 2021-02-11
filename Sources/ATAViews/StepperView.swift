@@ -13,7 +13,7 @@ protocol StepperDelegate: class {
     func stepperChanged(to value: Int)
 }
 
-class StepperCell: UICollectionViewCell {
+class StepperView: UIView {
     weak var delegate: StepperDelegate?
     @IBOutlet weak var title: UILabel!  {
         didSet {
