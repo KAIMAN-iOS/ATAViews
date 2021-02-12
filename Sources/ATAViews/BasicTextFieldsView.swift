@@ -18,7 +18,7 @@ public class BasicTextFieldsView: UIView {
         switch fields.count {
         case 0: fatalError()
         case 1:
-            let view: BorderedTextField = BorderedTextField.loadFromNib()
+            let view: BorderedTextField = BorderedTextField()
             view.configure(fields.first!)
             stackView.addArrangedSubview(view)
             stackView.distribution = .fill

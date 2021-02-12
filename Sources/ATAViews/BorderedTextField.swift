@@ -7,6 +7,7 @@
 
 import UIKit
 import TextFieldExtension
+import SnapKit
 
 public protocol FieldTypeConfigurable {
     var configuration: FieldTypeConfiguration { get }
@@ -46,15 +47,39 @@ public enum FieldTypeConfiguration {
 }
 
 public class BorderedTextField: UIView {
-    public static var boarderColor: UIColor = .gray
-    public var boarderColor: UIColor?
-    @IBOutlet weak var textfield: UITextField!
+    public static var borderColor: UIColor = .gray
+    public var borderColor: UIColor?
+    public lazy var textfield: UITextField = UITextField()
     
     public override func awakeFromNib() {
         super.awakeFromNib()
+        loadObjects()
+    }
+    
+    init() {
+        super.init(frame: .zero)
+        loadObjects()
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadObjects()
+    }
+    
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        loadObjects()
+    }
+    
+    func loadObjects() {
         backgroundColor = .clear
         layer.borderWidth = 1.0
-        layer.borderColor = (boarderColor ?? BorderedTextField.boarderColor).cgColor
+        layer.borderColor = (borderColor ?? BorderedTextField.borderColor).cgColor
+        addSubview(textfield)
+        textfield.snp.makeConstraints { make in
+            make.top.left.equalToSuperview().offset(8)
+            make.bottom.right.equalToSuperview().inset(8)
+        }
     }
         
     private(set) var field: FieldTypeConfigurable!

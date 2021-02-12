@@ -32,7 +32,7 @@ public class FieldTextField<FormType: FieldConfigurable>: AkiraTextField, FieldT
 
 public class ATAFormTextField<FormType: FieldConfigurable>: ATATextField {
     private var _textfield: FieldTextField<FormType> = FieldTextField<FormType>()
-    override var textField: AkiraTextField! {
+    override private(set) public var textField: AkiraTextField! {
         get {
             _textfield
         }
@@ -68,7 +68,7 @@ public class ATATextField: UIView {
         initialize()
     }
     
-    var textField: AkiraTextField!
+    private(set) public var textField: AkiraTextField!
     func loadTextField() {
         textField = AkiraTextField()
         layoutTextField()
