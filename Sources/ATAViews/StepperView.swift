@@ -66,7 +66,7 @@ public class StepperView: UIView {
         loadObjects()
     }
     
-    var largeComponent: Bool = true  {
+    public var largeComponent: Bool = true  {
         didSet {
             setNeedsLayout()
         }
