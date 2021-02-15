@@ -10,6 +10,27 @@ import LabelExtension
 import Ampersand
 import SnapKit
 
+public class ATAStepper: GMStepper {
+    public var largeComponent: Bool = true  {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        labelFont = .applicationFont(forTextStyle: .body)
+        labelBackgroundColor = StepperView.stepperColor
+        buttonsBackgroundColor = StepperView.stepperColor
+        labelTextColor = StepperView.stepperTextColor
+        buttonsTextColor = StepperView.stepperTextColor
+        snp.makeConstraints { make in
+            make.height.equalTo(largeComponent ? 50 : 30)
+            make.width.equalTo(largeComponent ? 130 : 100)
+        }
+    }
+}
+
 public protocol StepperDelegate: class {
     func stepperChanged(to value: Int)
 }
@@ -27,24 +48,10 @@ public class StepperView: UIView {
         return $0
     } (UILabel())
 
-    public lazy var stepper: GMStepper! = {
-        $0.labelFont = .applicationFont(forTextStyle: .body)
+    public lazy var stepper: ATAStepper! = {
         $0.addTarget(self, action: #selector(stepperChanged(_:)), for: .valueChanged)
         return $0
-    } (GMStepper())
-    
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        guard stepper != nil else { return }
-        stepper.labelBackgroundColor = StepperView.stepperColor
-        stepper.buttonsBackgroundColor = StepperView.stepperColor
-        stepper.labelTextColor = StepperView.stepperTextColor
-        stepper.buttonsTextColor = StepperView.stepperTextColor
-        stepper.snp.makeConstraints { make in
-            make.height.equalTo(largeComponent ? 50 : 30)
-            make.width.equalTo(largeComponent ? 130 : 100)
-        }
-    }
+    } (ATAStepper())
     
     public override func awakeFromNib() {
         super.awakeFromNib()
