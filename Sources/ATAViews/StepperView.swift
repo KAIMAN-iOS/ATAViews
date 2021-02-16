@@ -16,14 +16,16 @@ public class ATAStepper: GMStepper {
             setNeedsLayout()
         }
     }
+    public var stepperColor: UIColor?
+    public var stepperTextColor: UIColor?
     
     public override func layoutSubviews() {
         super.layoutSubviews()
         labelFont = .applicationFont(forTextStyle: .body)
-        labelBackgroundColor = StepperView.stepperColor
-        buttonsBackgroundColor = StepperView.stepperColor
-        labelTextColor = StepperView.stepperTextColor
-        buttonsTextColor = StepperView.stepperTextColor
+        labelBackgroundColor = stepperColor ?? StepperView.stepperColor
+        buttonsBackgroundColor = stepperColor ?? StepperView.stepperColor
+        labelTextColor = stepperTextColor ?? StepperView.stepperTextColor
+        buttonsTextColor = stepperTextColor ?? StepperView.stepperTextColor
         snp.makeConstraints { make in
             make.height.equalTo(largeComponent ? 50 : 30)
             make.width.equalTo(largeComponent ? 130 : 100)
@@ -38,6 +40,17 @@ public protocol StepperDelegate: class {
 public class StepperView: UIView {
     public static var stepperColor: UIColor = .black
     public static var stepperTextColor: UIColor = .white
+    public var stepperColor: UIColor?  {
+        didSet {
+            stepper.stepperColor = stepperColor
+        }
+    }
+    public var stepperTextColor: UIColor?  {
+        didSet {
+            stepper.stepperTextColor = stepperTextColor
+        }
+    }
+
     public weak var delegate: StepperDelegate?
     public lazy var title: UILabel! = {
         $0.adjustsFontForContentSizeCategory = true
