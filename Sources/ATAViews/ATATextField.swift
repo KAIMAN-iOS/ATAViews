@@ -8,7 +8,8 @@
 import UIKit
 import TextFieldEffects
 import SnapKit
-
+import Ampersand
+import UIViewExtension
 
 public protocol FieldConfigurable {
     var keyboardType: UIKeyboardType { get }
@@ -21,18 +22,26 @@ public protocol FieldTypable {
     var field: FieldType! { get }
 }
 
-public class FieldTextField<FormType: FieldConfigurable>: AkiraTextField, FieldTypable {
+public class FieldTextField<FormType: FieldConfigurable>: HoshiTextField, FieldTypable {
+    public var lineColor: UIColor = .gray
+    public var invalidLineColor: UIColor = .red
     public typealias FieldType = FormType
     public var field: FormType!
     var shouldCheckValidity: Bool = true
-    public var isValid: Bool = false
+    public var isValid: Bool = false  {
+        didSet {
+            borderActiveColor = isValid ? lineColor : invalidLineColor
+            borderInactiveColor = isValid ? lineColor : invalidLineColor
+        }
+    }
+
     public func checkValidity() { isValid = true }
     public func validityString() -> String? { nil }
 }
 
 public class ATAFormTextField<FormType: FieldConfigurable>: ATATextField {
     private var _textfield: FieldTextField<FormType> = FieldTextField<FormType>()
-    override private(set) public var textField: AkiraTextField! {
+    override private(set) public var textField: HoshiTextField! {
         get {
             _textfield
         }
@@ -51,8 +60,12 @@ public class ATAFormTextField<FormType: FieldConfigurable>: ATATextField {
 public class ATATextField: UIView {
     public static var placeholderColor: UIColor = .gray
     public static var textColor: UIColor = .black
+    public static var lineColor: UIColor = .gray
+    public static var invalidLineColor: UIColor = .black
     public var placeholderColor: UIColor?
     public var textColor: UIColor?
+    public var lineColor: UIColor?
+    public var invalidLineColor: UIColor?
     public override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
@@ -68,25 +81,29 @@ public class ATATextField: UIView {
         initialize()
     }
     
-    private(set) public var textField: AkiraTextField!
+    private(set) public var textField: HoshiTextField!
     func loadTextField() {
-        textField = AkiraTextField()
+        textField = HoshiTextField()
         layoutTextField()
     }
     
     func layoutTextField() {
-        textField.textColor = textColor ?? ATATextField.textColor
+        textField.textColor = ATATextField.textColor
         textField.placeholderColor = placeholderColor ?? ATATextField.placeholderColor
-        textField.backgroundColor = .white
+        textField.backgroundColor = .clear
         textField.setContentCompressionResistancePriority(.required, for: .vertical)
         textField.setContentCompressionResistancePriority(.required, for: .horizontal)
         textField.font = .applicationFont(forTextStyle: .callout)
         textField.placeholderColor = placeholderColor ?? ATATextField.placeholderColor
-        textField.borderColor = placeholderColor ?? ATATextField.placeholderColor
-        textField.borderSize = (active: 0.4, inactive: 0.5)
+        textField.borderActiveColor = placeholderColor ?? ATATextField.placeholderColor
+        textField.borderInactiveColor = placeholderColor ?? ATATextField.placeholderColor
+        textField.borderThickness = (active: 0.4, inactive: 0.5)
         textField.rightViewMode = .whileEditing
-        textField.placeholderInsets = CGPoint(x: 6, y: 10)
-        textField.placeholderOffset = CGPoint(x: 0, y: -6)
+        textField.setContentCompressionResistancePriority(.required, for: .vertical)
+        textField.setContentCompressionResistancePriority(.required, for: .horizontal)
+        textField.addKeyboardControlView(with: .lightGray, target: self, buttonStyle: .footnote)
+//        textField.placeholderInsets = CGPoint(x: 6, y: 10)
+//        textField.placeholderOffset = CGPoint(x: 0, y: -6)
     }
     
     private func initialize() {

@@ -34,7 +34,7 @@ public class ATAStepper: GMStepper {
 }
 
 public protocol StepperDelegate: class {
-    func stepperChanged(to value: Int)
+    func stepper(_ stepper: ATAStepper, changedValeTo value: Int)
 }
 
 public class StepperView: UIView {
@@ -119,6 +119,6 @@ public class StepperView: UIView {
     }
 
     @objc func stepperChanged(_ sender: GMStepper) {
-        delegate?.stepperChanged(to: Int(sender.value))
+        delegate?.stepper(self.stepper, changedValeTo: Int(sender.value))
     }
 }
