@@ -66,10 +66,6 @@ public class ATATextField: UIView {
     public var textColor: UIColor?
     public var lineColor: UIColor?
     public var invalidLineColor: UIColor?
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        initialize()
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -93,7 +89,7 @@ public class ATATextField: UIView {
         textField.backgroundColor = .clear
         textField.setContentCompressionResistancePriority(.required, for: .vertical)
         textField.setContentCompressionResistancePriority(.required, for: .horizontal)
-        textField.font = .applicationFont(forTextStyle: .callout)
+        textField.font = .applicationFont(forTextStyle: .body)
         textField.placeholderColor = placeholderColor ?? ATATextField.placeholderColor
         textField.borderActiveColor = placeholderColor ?? ATATextField.placeholderColor
         textField.borderInactiveColor = placeholderColor ?? ATATextField.placeholderColor
