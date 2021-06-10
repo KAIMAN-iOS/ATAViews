@@ -45,7 +45,12 @@ public class SelectableButton: UIButton {
             hasFocus = isSelected
         }
     }
-    var hasFocus: Bool = false
+    var hasFocus: Bool = false  {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+
     var componentBackgroundColor: UIColor { hasFocus ? (selectedBackgroundColor ?? SelectableButton.selectedBackgroundColor) : (unselectedBackgroundColor ?? SelectableButton.unselectedBackgroundColor) }
     var textColor: UIColor { hasFocus ? (selectedTextColor ?? SelectableButton.selectedTextColor) : (unselectedTextColor ?? SelectableButton.unselectedTextColor) }
     var borderColor: UIColor { hasFocus ? (selectedBorderColor ?? SelectableButton.selectedBorderColor) : (unselectedBorderColor ?? SelectableButton.unselectedBorderColor) }
