@@ -14,9 +14,9 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/jerometonnelier/KExtensions", .branch("master")),
-        .package(url: "https://github.com/jerometonnelier/ATAConfiguration", .branch("master")),
-        .package(url: "https://github.com/jerometonnelier/TextFieldEffects", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-iOS/KExtensions", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-iOS/ATAConfiguration", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-iOS/TextFieldEffects", .branch("master")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
