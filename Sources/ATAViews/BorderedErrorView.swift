@@ -53,8 +53,8 @@ public class BorderedErrorView: UIView {
     }
     
     /// configure only with an error. The closeBUtton is hidden
-    public func configure(_ text: String) {
+    public func configure(_ text: String, style: UIFont.TextStyle = .footnote) {
         closeButton.isHidden = true
-        errorLabel.set(text: text, for: .footnote, textColor: BorderedErrorView.configuration.palette.primary)
+        errorLabel.set(text: text, for: style, textColor: BorderedErrorView.configuration.palette.primary)
     }
 }
